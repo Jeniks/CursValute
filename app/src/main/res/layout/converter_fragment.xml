@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/activity_view_big_margin"
+            android:layout_marginLeft="@dimen/activity_view_big_margin"
+            android:layout_marginRight="@dimen/activity_view_big_margin"
+            android:layout_marginTop="@dimen/activity_view_big_margin"
+            android:animateLayoutChanges="true"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/textVerySmallDarkGrey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Currency I Have:" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_view_small_margin"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/etHave"
+                    style="@style/textVeryBigDarkGreen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:inputType="numberDecimal"
+                    android:maxLength="20"
+                    android:hint="0" />
+
+                <TextView
+                    android:id="@+id/valHave"
+                    style="@style/textVeryBigDarkGrey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="valut" />
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/listHaveValute"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:visibility="gone" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/activity_line_height"
+                android:layout_marginTop="@dimen/activity_line_margin"
+                android:background="@color/colorPrimary" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/activity_view_big_margin"
+                android:src="@drawable/ic_arrow_downward_24dp" />
+
+            <TextView
+                style="@style/textVerySmallDarkGrey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Currency I Want:" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_view_small_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/etWant"
+                    style="@style/textVeryBigDarkGreen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="0" />
+
+                <TextView
+                    android:id="@+id/valWant"
+                    style="@style/textVeryBigDarkGrey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="valut" />
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/listWantValute"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:visibility="gone" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/activity_line_height"
+                android:layout_marginTop="@dimen/activity_line_margin"
+                android:background="@color/colorPrimary" />
+
+        </LinearLayout>
+
+
+    </ScrollView>
+</layout>
