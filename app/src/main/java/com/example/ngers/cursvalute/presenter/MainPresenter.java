@@ -2,6 +2,7 @@ package com.example.ngers.cursvalute.presenter;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 import com.example.ngers.cursvalute.model.ValCurs;
 import com.example.ngers.cursvalute.model.dataBase.DataBaseHandler;
@@ -22,9 +23,10 @@ import java.net.URL;
 public class MainPresenter implements Presenter{
     String serverURL = "http://www.cbr.ru/scripts/XML_daily.asp";
     DataBaseHandler db;
-
+    Context context;
     @Override
     public void create(Context context) {
+        this.context = context;
         db = new DataBaseHandler(context);
         new DownloadDataTask().execute(serverURL);
     }
@@ -44,9 +46,9 @@ public class MainPresenter implements Presenter{
 
     }
 
-    private class DownloadDataTask extends AsyncTask<String, Void, Void> {
+    private class DownloadDataTask extends AsyncTask<String, Void, Boolean> {
 
-        protected Void doInBackground(String... urls) {
+        protected Boolean doInBackground(String... urls) {
             try {
                 URL url = new URL(urls[0]);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -57,7 +59,7 @@ public class MainPresenter implements Presenter{
                 InputStream inputStream = urlConnection.getInputStream();
                 StringBuffer buffer = new StringBuffer();
                 if (inputStream == null) {
-                    return null;
+                    return false;
                 }
                 BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "windows-1251"));
                 String line;
@@ -65,19 +67,26 @@ public class MainPresenter implements Presenter{
                     buffer.append(line + "\n");
                 }
                 if (buffer.length() == 0) {
-                    return null;
+                    return false;
                 }
                 String forecastJsonStr = buffer.toString();
                 Serializer serializer = new Persister();
                 ValCurs valCurs = serializer.read(ValCurs.class, forecastJsonStr);
                 db.deleteValCurs();
                 db.addValcurs(valCurs);
-                return null;
+                return true;
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
-            return null;
+            return false;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            super.onPostExecute(aBoolean);
+            if(!aBoolean)
+                Toast.makeText(context,"Error load data", Toast.LENGTH_SHORT).show();
         }
     }
 }

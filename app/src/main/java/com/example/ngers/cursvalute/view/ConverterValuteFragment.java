@@ -46,8 +46,10 @@ public class ConverterValuteFragment extends Fragment {
     private void iniData() {
 
         createAdapter();
-        binding.valHave.setText(presenter.getValuteHave().getCharCode());
-        binding.valWant.setText(presenter.getValuteWant().getCharCode());
+        if (presenter.getValuteHave() != null)
+            binding.valHave.setText(presenter.getValuteHave().getCharCode());
+        if (presenter.getValuteWant() != null)
+            binding.valWant.setText(presenter.getValuteWant().getCharCode());
 
         binding.listHaveValute.setAdapter(adapterHave);
         binding.listHaveValute.setLayoutManager(new LinearLayoutManager(getActivity()));

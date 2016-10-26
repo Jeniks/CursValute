@@ -90,7 +90,7 @@ public class DataBaseHandler extends SQLiteOpenHelper implements IDataBaseHandle
         ValCurs valCurs;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursorCurs = db.query(TABLE_VALCURS, null, null, null, null, null, null);
-        if (cursorCurs != null) {
+        if (cursorCurs.getCount() > 0) {
             cursorCurs.moveToFirst();
             valCurs = new ValCurs(Integer.parseInt(cursorCurs.getString(0)), cursorCurs.getString(1), cursorCurs.getString(2));
             cursorCurs.close();
@@ -101,7 +101,7 @@ public class DataBaseHandler extends SQLiteOpenHelper implements IDataBaseHandle
 
 
         Cursor cursorValuta = db.query(TABLE_VALUTE, null, null, null, null, null, null);
-        if (cursorValuta != null) {
+        if (cursorValuta.getCount() > 0) {
             cursorValuta.moveToFirst();
             do {
                 valCurs.getValutes().add(new Valute(cursorValuta.getString(0),

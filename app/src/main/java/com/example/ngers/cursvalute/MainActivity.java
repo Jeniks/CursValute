@@ -27,15 +27,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        openConverterValuteFragment();
 
         mainPresenter = new MainPresenter();
         mainPresenter.create(this);
 
+        openConverterValuteFragment();
         setupRightMenu();
     }
 
-    private void openConverterValuteFragment() {
+    void openConverterValuteFragment() {
         getFragmentManager().beginTransaction()
                 .replace(binding.fragment.getId(), new ConverterValuteFragment())
                 .commit();
