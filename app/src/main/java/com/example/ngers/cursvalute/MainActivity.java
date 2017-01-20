@@ -19,7 +19,6 @@ import com.example.ngers.cursvalute.view.ConverterValuteFragment;
 
 
 public class MainActivity extends AppCompatActivity {
-
     ActivityMainBinding binding;
     MainPresenter mainPresenter;
 
@@ -30,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
 
         mainPresenter = new MainPresenter();
         mainPresenter.create(this);
-
         openConverterValuteFragment();
         setupRightMenu();
     }
